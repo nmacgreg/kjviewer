@@ -5,7 +5,7 @@ import json
 from json2html import *
 
 
-with open('data/ads.20220210.json', 'r') as myfile:
+with open('data/ads.20220208.json', 'r') as myfile:
     jsondata = myfile.read()
 
 # parse through the data, transforming data into links

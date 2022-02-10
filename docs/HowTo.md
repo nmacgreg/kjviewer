@@ -10,4 +10,5 @@ Dependency on [kijiji-scraper](https://github.com/CRutkowski/Kijiji-Scraper)
 ## My interpretive code: 
 
 * To put up a web UI to view the data in ads.json: ```python server.py```
+* View the web UI at: [http://127.0.0.1:5000/list](http://127.0.0.1:5000/list)
 * This does a literal translation of the JSON format into an HTML table.  That's a quick first step, but we can do better
