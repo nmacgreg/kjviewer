@@ -3,28 +3,26 @@ app = Flask(__name__)
 
 import json
 from json2html import *
+import os
+ 
+# Get the list of all files and directories
+path = "data/"
+dir_list = os.listdir(path)
 
+days = []
+for file in dir_list:
+    with open("data/" +file, 'r') as myfile:
+        jsondata = myfile.read()
+    days.append(json.loads(jsondata))  # an array of dicts
 
-with open('data/ads.20220208.json', 'r') as myfile:
-    jsondata = myfile.read()
-
-# parse through the data, transforming data into links
-cars = json.loads(jsondata)
-
-for id, details in cars.items():
-    for key, value in details.items():
-        if key == "Url":
-           cars[id][key] = "<a href=" + value + ">" + value + "</a>" 
-        if key == "DataSource":
-           cars[id][key] = "<a href=" + value + ">" + value + "</a>" 
-
-#for counter in range(0, limit):
-    #print(cars[counter])
-    
-    #print(cars[counter]['Url'])
-    #cars[counter]['Url'] = '<a href=' + cars[counter]['Url'] + '>' + cars[counter]['Url'] + '</a>'
-
-
+# This does not keep track of differences beween the data, but maybe it combines the contents of multiple different files ?
+for cars in days:
+    for id, details in cars.items():
+        for key, value in details.items():
+            if key == "Url":
+               cars[id][key] = "<a href=" + value + ">" + value + "</a>" 
+            if key == "DataSource":
+               cars[id][key] = "<a href=" + value + ">" + value + "</a>" 
 
 @app.route('/')
 def hello_world():
@@ -32,9 +30,6 @@ def hello_world():
 
 @app.route('/list')
 def viewTable():
-    #print(json2html.convert(json = infoFromJson))
-    #return '<table><tr><td>this</td><td>that</td></tr></table>'
-    #return json2html.convert(json = jsondata)
     return json2html.convert(json = cars, escape = 0)
 
 if __name__ == '__main__':
