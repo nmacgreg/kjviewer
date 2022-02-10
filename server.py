@@ -3,10 +3,12 @@ app = Flask(__name__)
 
 import json
 from json2html import *
-with open('/home/nmacgreg/.kijiji_scraper/ads.json', 'r') as myfile:
-    jsondata = myfile.read()
-# parse through the data, transforming data into links
 
+
+with open('data/ads.20220210.json', 'r') as myfile:
+    jsondata = myfile.read()
+
+# parse through the data, transforming data into links
 cars = json.loads(jsondata)
 
 for id, details in cars.items():
