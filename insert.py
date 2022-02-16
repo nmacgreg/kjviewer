@@ -6,15 +6,6 @@ import os
 import sqlite3
 import re
 
-def removelines(value):
-    return value.replace('\n','')
-
-def removeweird(value):
-    return value.replace("\n",'')
-
-def removespaces(value):
-    return value.replace(' +','')
-
 conn = sqlite3.connect('data/cars.db')
 print("Opened database successfully");
  
@@ -38,7 +29,7 @@ for cars in days:
         # Data cleaning
         cars[id].setdefault('Title', '--No title given--') # Sometimes there is no title!
         for key, value in details.items():
-            cars[id][key] = value.strip()           # Some fields contain a ton of whitespace
+            cars[id][key] = re.sub(r'\s{2,50}', '', value) # Some fields contain a ton of whitespace
 
         try: 
             conn.execute("INSERT INTO CARS (ID, TITLE, IMAGE, URL, DETAILS, DESCRIPTION, LOCATION, PRICE) VALUES ( ?, ? , ? , ? , ? , ? , ?, ?) ", \
