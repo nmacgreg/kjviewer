@@ -24,11 +24,11 @@ def hello_world():
 def viewTable():
     conn = sqlite3.connect('data/cars.db')
     cur = conn.cursor()
-    cur.execute("SELECT price, title, details FROM cars order by price")
+    cur.execute("SELECT price, substring(title, 1, 30), substring(details, 1, 20), URL FROM cars order by price")
     bigarray =[]
     for row in cur:
         #print(row)
-        newdict={"Price":row[0], "Title":row[1], "Details":row[2]}
+        newdict={"Price":row[0], "Title":row[1], "Details":row[2], "URL":"<a href=\"" + row[3] +"\">" + row[3] + "</a>"}
         bigarray.append(newdict)
     conn.close()
     # convert dict to json 
