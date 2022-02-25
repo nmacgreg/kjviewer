@@ -4,7 +4,7 @@ set -e
 
 # Run the scraper, to generate a new file:
 echo "*** Run scraper ***"; echo
-pushd ../kijiji/Kijiji-Scraper
+pushd Kijiji-Scraper
 python3  main.py --skipmail
 popd
 echo; echo "*** Scraper successful ***"
