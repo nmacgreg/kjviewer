@@ -9,6 +9,8 @@ print("Opened database successfully")
 
 conn.execute('''CREATE TABLE CARS
          (ID INT PRIMARY KEY    NOT NULL,
+         DATE_ADDED     TEXT,
+         DATE_SOLD      TEXT,
          TITLE          TEXT    NOT NULL,
          IMAGE          TEXT    NOT NULL,
          URL            TEXT    NOT NULL,

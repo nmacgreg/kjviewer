@@ -18,6 +18,8 @@
 ## Next
 
 * "Details" field is very messy
+* Add new field to the database: date_added
+* Modify the inserter, to fill out new field: date_added
 
 ## Later
 
@@ -25,7 +27,7 @@
 * When considering newly scraped data, does the scraper take into account that the price might have changed? Do I need to modify the scraper, or my own code, when the price changes?  And, how do we represent this in the data model
 * Track when an item was taken down 
     * that means reviewing all the items in the database, and querying Kijiji whether they're still present or not
-    * ... and adding a new field to the data model, maybe two: status ['active', 'sold'] & date_sold
+    * ... and adding a new field to the data model, maybe two: status ['active', 'removed'] & date_removed
 * git submodule, to integrate the scraper into my codebase
 * Hack the scraper, and make it your own
     * Write data into a better format, probably directly into the sqlite DB
